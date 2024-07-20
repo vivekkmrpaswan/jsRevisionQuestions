@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body.light-theme{
+            background-color: white;
+            color: black;
+        }
+        body.dark-theme{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <button id="themeToggleBtn">Toggle Theme</button>
+</body>
+<script>
+    function applyTheme(theme){
+        document.body.className = theme;
+    }
+
+    function toggleTheme(){
+        let currTheme = document.body.className
+
+        let newTheme = currTheme === 'light-theme' ? 'dark-theme' : 'light-theme'
+        applyTheme(newTheme)
+
+        localStorage.setItem('theme', newTheme)
+    }
+
+    document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme)
+
+    let savedTheme = localStorage.getItem('theme') || 'light-theme'
+    applyTheme(savedTheme)
+</script>
+</html>

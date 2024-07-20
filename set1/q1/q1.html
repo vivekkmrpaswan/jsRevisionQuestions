@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        button{
+            border: none;
+            background-color: crimson;
+            padding: 10px 15px;
+        }
+    </style>
+  </head>
+  <body>
+    <p>This is the first paragraph</p>
+    <p>This is the second paragraph</p>
+    <p>This is the third paragraph</p>
+
+    <button id="textUpdater">Update Text</button>
+  </body>
+  <script>
+    let paragraphs = document.querySelectorAll("p");
+    let flag = true;
+
+    let originalTextArr = Array.from(paragraphs).map(para => para.textContent)
+
+    function changeTextContent(ele, newText) {
+      ele.textContent = newText;
+    }
+
+    let newTextArray = [
+      "Updated first paragraph",
+      "Updated second paragraph",
+      "Updated third paragraph",
+    ];
+
+    let button = document.getElementById("textUpdater");
+    button.addEventListener("click", () => {
+      if (flag) {
+        paragraphs.forEach((para, idx) => {
+          changeTextContent(para, newTextArray[idx]);
+        });
+        button.innerText = "Previous text";
+        button.style.backgroundColor = "aqua"
+        button.style.border = "none"
+        button.style.padding = "10px 15px"
+      } else {
+        paragraphs.forEach((para, idx) => {
+          changeTextContent(para, originalTextArr[idx]);
+        });
+        button.innerText = "Update text";
+        button.style.backgroundColor = "crimson"
+        button.style.border = "none"
+        button.style.padding = "10px 15px"
+      }
+
+      flag = !flag;
+    });
+  </script>
+</html>
